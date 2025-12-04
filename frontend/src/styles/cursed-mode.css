@@ -1,0 +1,160 @@
+/* Cursed Mode Theme - Darker, more intense styling */
+
+.cursed-mode {
+  /* Darker color palette */
+  --bg-primary: #0a0000;
+  --bg-secondary: #1a0505;
+  --bg-tertiary: #2a0a0a;
+  
+  /* Red/black accents */
+  --accent-purple: #ff0033;
+  --accent-purple-glow: rgba(255, 0, 51, 0.6);
+  --accent-purple-dim: rgba(255, 0, 51, 0.1);
+  
+  --accent-cyan: #ff3366;
+  --accent-cyan-glow: rgba(255, 51, 102, 0.6);
+  --accent-cyan-dim: rgba(255, 51, 102, 0.1);
+  
+  /* Darker text */
+  --text-primary: #ffcccc;
+  --text-secondary: #cc9999;
+  
+  /* Darker borders */
+  --border-color: rgba(255, 0, 0, 0.3);
+}
+
+/* Thicker fog in cursed mode */
+.cursed-mode .fog-overlay {
+  opacity: 0.8 !important;
+}
+
+/* More intense glitch effects */
+.cursed-mode .glitch-overlay {
+  opacity: 1 !important;
+}
+
+/* Enhanced shadows */
+.cursed-mode * {
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+/* Cursed mode specific animations */
+@keyframes cursedFlicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.9;
+  }
+}
+
+.cursed-mode body {
+  animation: cursedFlicker 5s ease-in-out infinite;
+}
+
+/* Stronger button effects in cursed mode */
+.cursed-mode button:hover {
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6),
+              0 0 40px rgba(255, 0, 0, 0.3) !important;
+}
+
+/* Red glow on interactive elements */
+.cursed-mode a:hover,
+.cursed-mode button:hover {
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+}
+
+/* Cursed mode fog particles */
+.cursed-mode canvas {
+  filter: hue-rotate(180deg) saturate(1.5);
+}
+
+/* Darker cards and containers */
+.cursed-mode [class*="card"],
+.cursed-mode [class*="container"] {
+  background: var(--bg-secondary) !important;
+  border-color: rgba(255, 0, 0, 0.4) !important;
+}
+
+/* Blood-red scrollbar */
+.cursed-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff0000, #990000);
+}
+
+.cursed-mode ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff3333, #cc0000);
+}
+
+/* Cursed mode transitions */
+.cursed-mode * {
+  transition: background-color 0.5s ease,
+              color 0.5s ease,
+              border-color 0.5s ease,
+              box-shadow 0.5s ease;
+}
+
+/* Hide haunted forest background in cursed mode - COMPLETE REMOVAL */
+.cursed-mode .forestBackground,
+.cursed-mode .forestBackground *,
+.cursed-mode [class*="forestBackground"],
+.cursed-mode [class*="HauntedForest"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Tiled background pattern for cursed mode */
+.cursed-mode body {
+  background-color: #0a0000 !important;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 35px,
+      rgba(139, 0, 0, 0.03) 35px,
+      rgba(139, 0, 0, 0.03) 70px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 35px,
+      rgba(139, 0, 0, 0.03) 35px,
+      rgba(139, 0, 0, 0.03) 70px
+    ) !important;
+  background-size: 100px 100px !important;
+  background-attachment: fixed !important;
+}
+
+/* Ensure html element also has the background */
+.cursed-mode html {
+  background-color: #0a0000 !important;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 35px,
+      rgba(139, 0, 0, 0.03) 35px,
+      rgba(139, 0, 0, 0.03) 70px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 35px,
+      rgba(139, 0, 0, 0.03) 35px,
+      rgba(139, 0, 0, 0.03) 70px
+    ) !important;
+  background-size: 100px 100px !important;
+  background-attachment: fixed !important;
+}
+
+/* Ensure root element has the background */
+.cursed-mode #root {
+  background: transparent !important;
+}

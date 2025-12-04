@@ -1,0 +1,142 @@
+/* Typography Enhancement System */
+/* Enhanced typography with spooky fonts, larger sizes, and improved readability */
+
+:root {
+  /* Font families */
+  --font-spooky: 'Creepster', cursive;
+  --font-heading: var(--font-spooky);
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Font sizes - Enhanced (Desktop) */
+  --font-size-main-title: 3.4rem;
+  --font-size-feature-title: 1.9rem;
+  --font-size-subtitle: 1.3rem;
+  --font-size-nav: 1.1rem;
+  --font-size-description: 1rem;
+  
+  /* Line heights for readability */
+  --line-height-title: 1.2;
+  --line-height-body: 1.7;
+  
+  /* Letter spacing */
+  --letter-spacing-title: 0.05em;
+  --letter-spacing-nav: 0.02em;
+  --letter-spacing-body: 0.01em;
+}
+
+/* Typography Application Classes */
+
+/* Main title with animated glow */
+.mainTitle {
+  font-family: var(--font-spooky);
+  font-size: var(--font-size-main-title);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-title);
+  animation: titleGlow 3s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+/* Feature titles */
+.featureTitle {
+  font-family: var(--font-spooky);
+  font-size: var(--font-size-feature-title);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-title);
+}
+
+/* Subtitles */
+.subtitle {
+  font-family: var(--font-spooky);
+  font-size: var(--font-size-subtitle);
+  line-height: var(--line-height-title);
+  letter-spacing: var(--letter-spacing-title);
+}
+
+/* Navigation text */
+.navText {
+  font-size: var(--font-size-nav);
+  letter-spacing: var(--letter-spacing-nav);
+  font-weight: 500;
+}
+
+/* Description text */
+.description {
+  font-size: var(--font-size-description);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+/* Main Title Glow Animation */
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(176, 38, 255, 0.6),
+      0 0 20px rgba(176, 38, 255, 0.4),
+      0 0 30px rgba(176, 38, 255, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(176, 38, 255, 0.8),
+      0 0 30px rgba(176, 38, 255, 0.6),
+      0 0 45px rgba(176, 38, 255, 0.4),
+      0 0 60px rgba(176, 38, 255, 0.2);
+  }
+}
+
+/* Responsive Typography Breakpoints */
+
+/* Large Desktop (1200px+) - Default values above */
+
+/* Desktop (768px - 1199px) */
+@media (max-width: 1199px) {
+  :root {
+    --font-size-main-title: 2.8rem;
+    --font-size-feature-title: 1.6rem;
+    --font-size-subtitle: 1.1rem;
+    --font-size-nav: 1.1rem;
+  }
+}
+
+/* Tablet (480px - 767px) */
+@media (max-width: 767px) {
+  :root {
+    --font-size-main-title: 2.2rem;
+    --font-size-feature-title: 1.4rem;
+    --font-size-subtitle: 1rem;
+    --font-size-nav: 1rem;
+    --font-size-description: 0.95rem;
+  }
+}
+
+/* Mobile (320px - 479px) */
+@media (max-width: 479px) {
+  :root {
+    --font-size-main-title: 1.8rem;
+    --font-size-feature-title: 1.2rem;
+    --font-size-subtitle: 0.9rem;
+    --font-size-nav: 0.95rem;
+    --font-size-description: 0.9rem;
+  }
+}
+
+/* Small Mobile (< 320px) */
+@media (max-width: 319px) {
+  :root {
+    --font-size-main-title: 1.6rem;
+    --font-size-feature-title: 1.1rem;
+    --font-size-subtitle: 0.85rem;
+    --font-size-nav: 0.9rem;
+    --font-size-description: 0.85rem;
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .mainTitle {
+    animation: none;
+    text-shadow: 
+      0 0 15px rgba(176, 38, 255, 0.7),
+      0 0 30px rgba(176, 38, 255, 0.5),
+      0 0 45px rgba(176, 38, 255, 0.3);
+  }
+}

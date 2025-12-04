@@ -1,0 +1,115 @@
+.batsContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.bat {
+  position: absolute;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.batSvg {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9));
+}
+
+.batEye {
+  fill: #ff0000;
+  filter: drop-shadow(0 0 3px #ff0000) 
+          drop-shadow(0 0 6px #ff0000)
+          drop-shadow(0 0 9px #ff0000);
+  animation: eyeGlow 2s ease-in-out infinite;
+}
+
+@keyframes eyeGlow {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 3px #ff0000) 
+            drop-shadow(0 0 6px #ff0000);
+  }
+  50% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 2px #ff0000) 
+            drop-shadow(0 0 4px #ff0000);
+  }
+}
+
+/* Bat flying from left to right */
+.left-to-right {
+  left: -100px;
+  animation-name: flyLeftToRight;
+}
+
+/* Bat flying from right to left */
+.right-to-left {
+  right: -100px;
+  animation-name: flyRightToLeft;
+  transform: scaleX(-1); /* Flip bat to face left */
+}
+
+@keyframes flyLeftToRight {
+  0% {
+    left: -100px;
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(20px) rotate(-5deg);
+  }
+  100% {
+    left: calc(100% + 100px);
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes flyRightToLeft {
+  0% {
+    right: -100px;
+    transform: scaleX(-1) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: scaleX(-1) translateY(-20px) rotate(5deg);
+  }
+  50% {
+    transform: scaleX(-1) translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: scaleX(-1) translateY(20px) rotate(-5deg);
+  }
+  100% {
+    right: calc(100% + 100px);
+    transform: scaleX(-1) translateY(0) rotate(0deg);
+  }
+}
+
+/* Cursed mode - intensify the glow */
+:global(.cursed-mode) .batSvg {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9))
+          drop-shadow(0 0 15px rgba(255, 0, 0, 0.4));
+}
+
+:global(.cursed-mode) .batEye {
+  fill: #ff3333;
+  filter: drop-shadow(0 0 5px #ff0000) 
+          drop-shadow(0 0 10px #ff0000)
+          drop-shadow(0 0 15px #ff0000);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .batSvg {
+    width: 30px;
+    height: 22px;
+  }
+}

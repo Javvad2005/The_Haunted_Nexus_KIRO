@@ -1,0 +1,85 @@
+.errorBoundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+}
+
+.errorContent {
+  max-width: 600px;
+  text-align: center;
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-purple);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  box-shadow: 0 0 50px rgba(176, 38, 255, 0.5);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.errorTitle {
+  font-size: 2.5rem;
+  color: var(--accent-purple);
+  text-shadow: 0 0 20px var(--accent-purple-glow);
+  margin-bottom: 1rem;
+  font-family: 'Creepster', cursive;
+}
+
+.errorMessage {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.errorDetails {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.errorText {
+  color: #ff6b6b;
+  font-family: monospace;
+  font-size: 0.9rem;
+  text-align: left;
+  word-break: break-word;
+}
+
+.resetButton {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+  color: var(--text-primary);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(176, 38, 255, 0.4);
+}
+
+.resetButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(176, 38, 255, 0.6);
+}
+
+.resetButton:active {
+  transform: translateY(0);
+}

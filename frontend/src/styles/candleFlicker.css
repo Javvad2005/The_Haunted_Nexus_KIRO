@@ -1,0 +1,114 @@
+/* Candle Flicker UI Accents
+ * Subtle animated lighting effect for atmospheric UI elements
+ * Uses GPU-accelerated properties (filter, opacity) for performance
+ */
+
+@keyframes candleFlicker {
+  0%, 100% {
+    filter: brightness(0.95);
+    opacity: 0.98;
+  }
+  10% {
+    filter: brightness(1.02);
+    opacity: 1;
+  }
+  20% {
+    filter: brightness(0.97);
+    opacity: 0.99;
+  }
+  35% {
+    filter: brightness(1.05);
+    opacity: 1;
+  }
+  50% {
+    filter: brightness(0.96);
+    opacity: 0.98;
+  }
+  65% {
+    filter: brightness(1.03);
+    opacity: 1;
+  }
+  80% {
+    filter: brightness(0.98);
+    opacity: 0.99;
+  }
+  90% {
+    filter: brightness(1.01);
+    opacity: 1;
+  }
+}
+
+/* Base candle flicker class */
+.candleFlicker {
+  animation: candleFlicker 4s ease-in-out infinite;
+  will-change: filter, opacity;
+}
+
+/* Apply to button elements */
+button.candleFlicker,
+.button.candleFlicker {
+  animation: candleFlicker 4s ease-in-out infinite;
+}
+
+/* Apply to card elements */
+.card.candleFlicker {
+  animation: candleFlicker 4s ease-in-out infinite;
+}
+
+/* Apply to panel elements */
+.panel.candleFlicker {
+  animation: candleFlicker 4s ease-in-out infinite;
+}
+
+/* Apply to overlay elements */
+.overlay.candleFlicker {
+  animation: candleFlicker 4s ease-in-out infinite;
+}
+
+/* Stagger animations for natural effect - creates a more organic feel */
+.card:nth-child(2),
+button:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.card:nth-child(3),
+button:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.card:nth-child(4),
+button:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.card:nth-child(5),
+button:nth-child(5) {
+  animation-delay: 2s;
+}
+
+.card:nth-child(6),
+button:nth-child(6) {
+  animation-delay: 0.75s;
+}
+
+.card:nth-child(7),
+button:nth-child(7) {
+  animation-delay: 1.25s;
+}
+
+.card:nth-child(8),
+button:nth-child(8) {
+  animation-delay: 1.75s;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .candleFlicker,
+  button.candleFlicker,
+  .button.candleFlicker,
+  .card.candleFlicker,
+  .panel.candleFlicker,
+  .overlay.candleFlicker {
+    animation: none;
+  }
+}

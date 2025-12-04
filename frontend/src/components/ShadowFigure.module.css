@@ -1,0 +1,123 @@
+/* Shadow Silhouette Effect - Task 22.1 */
+/* Requirements: 18.1, 18.2, 18.3 */
+
+.shadowFigure {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 120px;
+  height: 80vh;
+  max-height: 600px;
+  pointer-events: none;
+  z-index: 1; /* Behind UI but above background */
+  color: rgba(0, 0, 0, 0.9);
+  filter: blur(8px);
+  opacity: 0.1; /* 8-12% opacity range set via inline style */
+  transform: translate3d(-150px, -50%, 0);
+  animation: shadowWalk 5s linear forwards;
+  will-change: transform;
+}
+
+/* Right-to-left variant */
+.shadowFigure.rtl {
+  left: auto;
+  right: 0;
+  transform: translate3d(150px, -50%, 0) scaleX(-1);
+  animation: shadowWalkRTL 5s linear forwards;
+}
+
+/* Silhouette SVG container */
+.silhouette {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Walking animation - Left to Right */
+@keyframes shadowWalk {
+  0% {
+    transform: translate3d(-150px, -50%, 0);
+    filter: blur(12px);
+  }
+  10% {
+    filter: blur(8px);
+  }
+  50% {
+    filter: blur(6px);
+  }
+  90% {
+    filter: blur(8px);
+  }
+  100% {
+    transform: translate3d(calc(100vw + 150px), -50%, 0);
+    filter: blur(12px);
+  }
+}
+
+/* Walking animation - Right to Left */
+@keyframes shadowWalkRTL {
+  0% {
+    transform: translate3d(150px, -50%, 0) scaleX(-1);
+    filter: blur(12px);
+  }
+  10% {
+    filter: blur(8px);
+  }
+  50% {
+    filter: blur(6px);
+  }
+  90% {
+    filter: blur(8px);
+  }
+  100% {
+    transform: translate3d(calc(-100vw - 150px), -50%, 0) scaleX(-1);
+    filter: blur(12px);
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .shadowFigure {
+    width: 80px;
+    height: 60vh;
+    max-height: 400px;
+    filter: blur(10px);
+  }
+  
+  @keyframes shadowWalk {
+    0% {
+      transform: translate3d(-100px, -50%, 0);
+      filter: blur(14px);
+    }
+    50% {
+      filter: blur(8px);
+    }
+    100% {
+      transform: translate3d(calc(100vw + 100px), -50%, 0);
+      filter: blur(14px);
+    }
+  }
+  
+  @keyframes shadowWalkRTL {
+    0% {
+      transform: translate3d(100px, -50%, 0) scaleX(-1);
+      filter: blur(14px);
+    }
+    50% {
+      filter: blur(8px);
+    }
+    100% {
+      transform: translate3d(calc(-100vw - 100px), -50%, 0) scaleX(-1);
+      filter: blur(14px);
+    }
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .shadowFigure {
+    animation-duration: 8s !important;
+    filter: blur(15px);
+    opacity: 0.05 !important;
+  }
+}

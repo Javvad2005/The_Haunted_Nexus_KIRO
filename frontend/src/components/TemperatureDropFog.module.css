@@ -1,0 +1,88 @@
+/* Temperature Drop Fog Effect
+ * Triggered on route navigation for atmospheric transitions
+ * Uses GPU-accelerated transforms for performance
+ */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998; /* Below top controls (9999) */
+  animation: fadeInOut 1s ease-in-out;
+}
+
+.blueTint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 100, 200, 0.15) 0%,
+    rgba(0, 150, 255, 0.1) 50%,
+    rgba(0, 100, 200, 0.15) 100%
+  );
+  animation: bluePulse 1s ease-in-out;
+}
+
+.fog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(
+    to top,
+    rgba(200, 220, 255, 0.3) 0%,
+    rgba(200, 220, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: fogRise 1s ease-out;
+  will-change: transform, opacity;
+}
+
+/* Fade in and out animation */
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  20%, 80% {
+    opacity: 1;
+  }
+}
+
+/* Blue tint pulse animation */
+@keyframes bluePulse {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Rising fog animation with GPU acceleration */
+@keyframes fogRise {
+  from {
+    transform: translate3d(0, 20%, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .blueTint,
+  .fog {
+    animation: none;
+    opacity: 0;
+  }
+}

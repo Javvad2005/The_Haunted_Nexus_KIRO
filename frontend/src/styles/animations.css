@@ -1,0 +1,707 @@
+/* Glitch effect animations - GPU optimized with transform3d and translateZ */
+@keyframes glitch {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  20% {
+    transform: translate3d(-2px, 2px, 0);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translate3d(-2px, -2px, 0);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translate3d(2px, 2px, 0);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate3d(2px, -2px, 0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes glitch-intense {
+  0% {
+    transform: translate3d(0, 0, 0) skew(0deg);
+    filter: hue-rotate(0deg);
+  }
+  10% {
+    transform: translate3d(-5px, 5px, 0) skew(2deg);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate3d(5px, -5px, 0) skew(-2deg);
+    filter: hue-rotate(180deg);
+  }
+  30% {
+    transform: translate3d(-5px, -5px, 0) skew(1deg);
+    filter: hue-rotate(270deg);
+  }
+  40% {
+    transform: translate3d(5px, 5px, 0) skew(-1deg);
+    filter: hue-rotate(360deg);
+  }
+  50% {
+    transform: translate3d(-3px, 3px, 0) skew(0deg);
+    filter: hue-rotate(0deg);
+  }
+  60% {
+    transform: translate3d(3px, -3px, 0) skew(1deg);
+    filter: hue-rotate(90deg);
+  }
+  70% {
+    transform: translate3d(-3px, -3px, 0) skew(-1deg);
+    filter: hue-rotate(180deg);
+  }
+  80% {
+    transform: translate3d(3px, 3px, 0) skew(0deg);
+    filter: hue-rotate(270deg);
+  }
+  90% {
+    transform: translate3d(-2px, 2px, 0) skew(0deg);
+    filter: hue-rotate(360deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) skew(0deg);
+    filter: hue-rotate(0deg);
+  }
+}
+
+/* Fog animation - Optimized with transform3d */
+@keyframes fog-drift {
+  0% {
+    transform: translate3d(-10%, 0, 0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate3d(10%, -5%, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(-10%, 0, 0);
+    opacity: 0.3;
+  }
+}
+
+@keyframes fog-drift-alt {
+  0% {
+    transform: translate3d(10%, 0, 0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate3d(-10%, 5%, 0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate3d(10%, 0, 0);
+    opacity: 0.2;
+  }
+}
+
+/* Glow pulse animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--accent-purple-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-purple-glow), 0 0 30px var(--accent-purple-glow);
+  }
+}
+
+@keyframes glow-pulse-cyan {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--accent-cyan-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-cyan-glow), 0 0 30px var(--accent-cyan-glow);
+  }
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide up animation - Optimized with transform3d */
+@keyframes slide-up {
+  from {
+    transform: translate3d(0, 20px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  41%, 43% {
+    opacity: 0.8;
+  }
+  45%, 47% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Shimmer loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Utility classes for animations - Optimized with will-change */
+.animate-glitch {
+  animation: glitch 0.3s ease-in-out;
+  will-change: transform, opacity;
+}
+
+.animate-glitch-intense {
+  animation: glitch-intense 0.5s ease-in-out;
+  will-change: transform, filter;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.animate-glow-pulse-cyan {
+  animation: glow-pulse-cyan 2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in-out;
+  will-change: opacity;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+  will-change: transform, opacity;
+}
+
+.animate-flicker {
+  animation: flicker 3s ease-in-out infinite;
+  will-change: opacity;
+}
+
+
+/* ========================================
+   HAUNTED LIGHTING EFFECTS
+   ======================================== */
+
+/* Moving shadows animation */
+@keyframes shadowMove {
+  0%, 100% {
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3),
+                5px -5px 20px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3),
+                -5px -5px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Flickering glow effect */
+@keyframes flickerGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.4),
+                0 0 20px rgba(176, 38, 255, 0.2);
+  }
+  10% {
+    box-shadow: 0 0 8px rgba(176, 38, 255, 0.3),
+                0 0 15px rgba(176, 38, 255, 0.15);
+  }
+  20% {
+    box-shadow: 0 0 12px rgba(176, 38, 255, 0.5),
+                0 0 25px rgba(176, 38, 255, 0.25);
+  }
+  30% {
+    box-shadow: 0 0 9px rgba(176, 38, 255, 0.35),
+                0 0 18px rgba(176, 38, 255, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.6),
+                0 0 30px rgba(176, 38, 255, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 7px rgba(176, 38, 255, 0.3),
+                0 0 14px rgba(176, 38, 255, 0.15);
+  }
+}
+
+/* Soft pulsing light */
+@keyframes pulseLight {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3),
+                0 0 30px rgba(0, 240, 255, 0.15),
+                inset 0 0 10px rgba(0, 240, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.5),
+                0 0 50px rgba(0, 240, 255, 0.25),
+                inset 0 0 15px rgba(0, 240, 255, 0.2);
+  }
+}
+
+/* Enhanced button hover glow */
+@keyframes buttonHoverGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.4),
+                0 0 20px rgba(176, 38, 255, 0.2),
+                0 4px 15px rgba(176, 38, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.6),
+                0 0 40px rgba(176, 38, 255, 0.3),
+                0 6px 25px rgba(176, 38, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.4),
+                0 0 20px rgba(176, 38, 255, 0.2),
+                0 4px 15px rgba(176, 38, 255, 0.3);
+  }
+}
+
+/* Utility classes for haunted lighting */
+.haunted-shadow {
+  animation: shadowMove 4s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.haunted-flicker {
+  animation: flickerGlow 3s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.haunted-pulse {
+  animation: pulseLight 2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.haunted-button-glow {
+  animation: buttonHoverGlow 2s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+
+/* ========================================
+   UI POLISH - Enhanced Shadows & Spacing
+   ======================================== */
+
+/* Improved card shadows */
+.enhanced-card-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+              0 0 40px rgba(176, 38, 255, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Floating effect for cards - GPU optimized */
+@keyframes floatCard {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+.float-card {
+  animation: floatCard 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Enhanced depth shadows */
+.depth-shadow-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2),
+              0 0 15px rgba(176, 38, 255, 0.05);
+}
+
+.depth-shadow-md {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25),
+              0 0 25px rgba(176, 38, 255, 0.08);
+}
+
+.depth-shadow-lg {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+              0 0 40px rgba(176, 38, 255, 0.12);
+}
+
+/* Smooth hover lift - GPU optimized */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.hover-lift:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35),
+              0 0 50px rgba(176, 38, 255, 0.15);
+}
+
+/* Improved spacing utilities */
+.spacing-comfortable {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.spacing-relaxed {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Better border glow */
+.border-glow {
+  border: 2px solid rgba(176, 38, 255, 0.3);
+  box-shadow: 0 0 15px rgba(176, 38, 255, 0.2),
+              inset 0 0 15px rgba(176, 38, 255, 0.05);
+}
+
+.border-glow:hover {
+  border-color: rgba(176, 38, 255, 0.5);
+  box-shadow: 0 0 25px rgba(176, 38, 255, 0.3),
+              inset 0 0 20px rgba(176, 38, 255, 0.08);
+}
+
+
+/* ========================================
+   FINAL ENHANCEMENTS - Visual Effects
+   ======================================== */
+
+/* Enhancement E: Screen blur ripple - GPU optimized with will-change */
+@keyframes blurRipple {
+  0% {
+    backdrop-filter: blur(0px);
+    opacity: 0;
+  }
+  30% {
+    backdrop-filter: blur(8px);
+    opacity: 1;
+  }
+  100% {
+    backdrop-filter: blur(0px);
+    opacity: 0;
+  }
+}
+
+/* Apply will-change to elements using blurRipple */
+.blur-ripple-active {
+  will-change: backdrop-filter, opacity;
+}
+
+/* Enhancement F: Blood smear glitch - GPU optimized using transform instead of left */
+@keyframes bloodSmear {
+  0% { 
+    transform: translateX(-100%);
+    filter: contrast(1) saturate(1);
+  }
+  50% {
+    filter: contrast(1.8) saturate(1.5);
+  }
+  100% { 
+    transform: translateX(200%);
+    filter: contrast(1) saturate(1);
+  }
+}
+
+/* Enhancement I: Temperature drop - GPU optimized */
+@keyframes temperatureDrop {
+  0% {
+    opacity: 0;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes risingFog {
+  0% {
+    transform: translate3d(0, 50px, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(0, -100px, 0);
+    opacity: 0;
+  }
+}
+
+/* Enhancement J: Jump scare glitch */
+@keyframes jumpScare {
+  0% { 
+    opacity: 0; 
+    filter: hue-rotate(0deg) contrast(1);
+  }
+  25% { 
+    opacity: 1; 
+    filter: hue-rotate(90deg) contrast(2);
+  }
+  50% { 
+    opacity: 0; 
+    filter: hue-rotate(180deg) contrast(1.5);
+  }
+  75% { 
+    opacity: 1; 
+    filter: hue-rotate(270deg) contrast(2.5);
+  }
+  100% { 
+    opacity: 0; 
+    filter: hue-rotate(360deg) contrast(1);
+  }
+}
+
+/* Enhancement H: Candle flicker UI lighting - Task 23.1 */
+/* Requirements: 19.1, 19.2, 19.3 */
+/* Irregular intensity oscillation (90% → 105%) with GPU-accelerated properties */
+
+/* Primary candle flicker - Subtle variation */
+@keyframes candleFlicker1 {
+  0% { 
+    opacity: 1;
+    filter: brightness(0.98);
+  }
+  5% { 
+    opacity: 0.98;
+    filter: brightness(0.95);
+  }
+  12% { 
+    opacity: 1;
+    filter: brightness(1.02);
+  }
+  18% { 
+    opacity: 0.97;
+    filter: brightness(0.93);
+  }
+  25% { 
+    opacity: 1;
+    filter: brightness(1.05);
+  }
+  32% { 
+    opacity: 0.99;
+    filter: brightness(0.97);
+  }
+  40% { 
+    opacity: 0.96;
+    filter: brightness(0.91);
+  }
+  48% { 
+    opacity: 1;
+    filter: brightness(1.03);
+  }
+  55% { 
+    opacity: 0.98;
+    filter: brightness(0.96);
+  }
+  63% { 
+    opacity: 1;
+    filter: brightness(1.04);
+  }
+  70% { 
+    opacity: 0.97;
+    filter: brightness(0.92);
+  }
+  78% { 
+    opacity: 1;
+    filter: brightness(1.01);
+  }
+  85% { 
+    opacity: 0.99;
+    filter: brightness(0.98);
+  }
+  92% { 
+    opacity: 0.96;
+    filter: brightness(0.94);
+  }
+  100% { 
+    opacity: 1;
+    filter: brightness(0.98);
+  }
+}
+
+/* Secondary candle flicker - Different rhythm */
+@keyframes candleFlicker2 {
+  0% { 
+    opacity: 1;
+    filter: brightness(1.01);
+  }
+  8% { 
+    opacity: 0.97;
+    filter: brightness(0.94);
+  }
+  15% { 
+    opacity: 1;
+    filter: brightness(1.05);
+  }
+  23% { 
+    opacity: 0.99;
+    filter: brightness(0.96);
+  }
+  30% { 
+    opacity: 0.96;
+    filter: brightness(0.90);
+  }
+  38% { 
+    opacity: 1;
+    filter: brightness(1.03);
+  }
+  45% { 
+    opacity: 0.98;
+    filter: brightness(0.97);
+  }
+  53% { 
+    opacity: 0.97;
+    filter: brightness(0.93);
+  }
+  60% { 
+    opacity: 1;
+    filter: brightness(1.04);
+  }
+  68% { 
+    opacity: 0.99;
+    filter: brightness(0.99);
+  }
+  75% { 
+    opacity: 0.96;
+    filter: brightness(0.91);
+  }
+  83% { 
+    opacity: 1;
+    filter: brightness(1.02);
+  }
+  90% { 
+    opacity: 0.98;
+    filter: brightness(0.95);
+  }
+  100% { 
+    opacity: 1;
+    filter: brightness(1.01);
+  }
+}
+
+/* Tertiary candle flicker - More dramatic */
+@keyframes candleFlicker3 {
+  0% { 
+    opacity: 1;
+    filter: brightness(0.99);
+  }
+  6% { 
+    opacity: 0.95;
+    filter: brightness(0.92);
+  }
+  14% { 
+    opacity: 1;
+    filter: brightness(1.05);
+  }
+  20% { 
+    opacity: 0.98;
+    filter: brightness(0.95);
+  }
+  28% { 
+    opacity: 0.96;
+    filter: brightness(0.90);
+  }
+  35% { 
+    opacity: 1;
+    filter: brightness(1.04);
+  }
+  42% { 
+    opacity: 0.97;
+    filter: brightness(0.94);
+  }
+  50% { 
+    opacity: 0.95;
+    filter: brightness(0.91);
+  }
+  58% { 
+    opacity: 1;
+    filter: brightness(1.05);
+  }
+  65% { 
+    opacity: 0.99;
+    filter: brightness(0.98);
+  }
+  72% { 
+    opacity: 0.96;
+    filter: brightness(0.92);
+  }
+  80% { 
+    opacity: 1;
+    filter: brightness(1.03);
+  }
+  88% { 
+    opacity: 0.97;
+    filter: brightness(0.96);
+  }
+  95% { 
+    opacity: 0.98;
+    filter: brightness(0.93);
+  }
+  100% { 
+    opacity: 1;
+    filter: brightness(0.99);
+  }
+}
+
+/* Utility classes for candle flicker effect */
+.candle-flicker {
+  animation: candleFlicker1 4.2s ease-in-out infinite;
+  will-change: opacity, filter;
+}
+
+.candle-flicker-alt {
+  animation: candleFlicker2 3.8s ease-in-out infinite;
+  will-change: opacity, filter;
+}
+
+.candle-flicker-dramatic {
+  animation: candleFlicker3 4.5s ease-in-out infinite;
+  will-change: opacity, filter;
+}
+
+/* Enhancement L: Map shake for thunder - GPU optimized */
+@keyframes mapShake {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  10% { transform: translate3d(-2px, -1px, 0); }
+  20% { transform: translate3d(2px, 1px, 0); }
+  30% { transform: translate3d(-1px, 2px, 0); }
+  40% { transform: translate3d(1px, -2px, 0); }
+  50% { transform: translate3d(-2px, 1px, 0); }
+  60% { transform: translate3d(2px, -1px, 0); }
+  70% { transform: translate3d(-1px, -2px, 0); }
+  80% { transform: translate3d(1px, 2px, 0); }
+  90% { transform: translate3d(-2px, -1px, 0); }
+}
+
+.map-shake-active {
+  will-change: transform;
+}

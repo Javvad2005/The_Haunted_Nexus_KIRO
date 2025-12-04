@@ -1,0 +1,138 @@
+/* Ambient Volume Control - Collapsible design with four levels */
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.toggleButton {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-cyan);
+  border-radius: 50%;
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+}
+
+.toggleButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 240, 255, 0.5);
+  border-color: var(--accent-purple);
+}
+
+.toggleButton.expanded {
+  border-color: var(--accent-purple);
+  background: rgba(176, 38, 255, 0.1);
+  box-shadow: 0 0 20px rgba(176, 38, 255, 0.4);
+}
+
+.icon {
+  line-height: 1;
+}
+
+/* Level Selector - Appears next to toggle button */
+.levelSelector {
+  display: flex;
+  gap: var(--spacing-xs);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.levelButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  min-width: 60px;
+}
+
+.levelButton:hover {
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.levelButton.active {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+  color: var(--text-primary);
+  box-shadow: 0 0 15px rgba(176, 38, 255, 0.5);
+}
+
+.levelButton.active:hover {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .toggleButton {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .levelSelector {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }
+
+  .levelButton {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
