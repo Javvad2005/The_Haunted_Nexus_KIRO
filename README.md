@@ -2,7 +2,11 @@
 
 A Halloween-themed AI project for the Kiroween Hackathon featuring six spooky interactive experiences.
 
-🌐 **[Live Demo](https://your-site-name.netlify.app)** | 📚 **[Deployment Guide](DEPLOYMENT.md)** | 🚀 **[Quick Start](QUICK_START.md)**
+🌐 **[Live Demo](https://your-site-name.netlify.app)** | 📚 **[Netlify-Only Deployment](NETLIFY_ONLY_DEPLOYMENT.md)** | 🚀 **[Quick Start](QUICK_START.md)**
+
+## 🎉 NEW: Deploy Entirely on Netlify!
+
+Ghost personas are now **embedded in the frontend** - no separate backend needed! Deploy your entire Haunted Nexus to Netlify in 5 minutes with all 7 ghost personas working perfectly. See [NETLIFY_ONLY_DEPLOYMENT.md](NETLIFY_ONLY_DEPLOYMENT.md) for details.
 
 ## Features
 

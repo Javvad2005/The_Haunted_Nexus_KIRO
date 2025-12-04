@@ -3,6 +3,7 @@ import api, { APIError } from '../services/api';
 import GhostVoiceButton from '../components/GhostVoiceButton';
 import SpookyButton from '../components/SpookyButton';
 import typingSounds from '../services/typingSounds';
+import { getAllPersonas } from '../data/ghostPersonas';
 import styles from './GhostChat.module.css';
 
 // Component to show relative time that updates
@@ -53,22 +54,13 @@ const GhostChat = () => {
   const [showPersonaSelector, setShowPersonaSelector] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Fetch personas on mount
+  // Load personas from embedded data (no backend needed!)
   useEffect(() => {
-    const fetchPersonas = async () => {
-      try {
-        console.log('🔮 Fetching ghost personas...');
-        const response = await api.getGhostPersonas();
-        console.log('🔮 Personas response:', response);
-        console.log('🔮 Personas array:', response.personas);
-        setPersonas(response.personas);
-        console.log('🔮 Personas set successfully, count:', response.personas?.length);
-      } catch (err) {
-        console.error('❌ Failed to fetch personas:', err);
-        setError('Failed to load spirit personas. Please refresh the page.');
-      }
-    };
-    fetchPersonas();
+    console.log('🔮 Loading ghost personas from embedded data...');
+    const personasData = getAllPersonas();
+    console.log('🔮 Personas loaded:', personasData);
+    setPersonas(personasData);
+    console.log('🔮 Personas set successfully, count:', personasData.length);
   }, []);
 
   // Auto-scroll to latest message

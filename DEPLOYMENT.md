@@ -101,7 +101,8 @@ Your backend needs to be deployed separately. Here are some options:
 
 ### Frontend (.env.production)
 ```env
-VITE_API_URL=https://your-backend-url.com/api
+# IMPORTANT: Do NOT include /api suffix - routes already have it
+VITE_API_URL=https://your-backend-url.com
 ```
 
 ### Backend (.env)
